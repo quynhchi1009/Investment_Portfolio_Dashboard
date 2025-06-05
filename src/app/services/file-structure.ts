@@ -12,6 +12,7 @@ export class FileStructureService {
   private readonly dataUrl = '../../assets/data/file-structure.json';
 
   private readonly fallbackDashboardStats: DashboardStats = {
+    companyName: 'Alpha Holdings Ltd.',
     liveDeals: 3,
     assetsUnderManagement: '€125M',
     averageReturn: '18%',
@@ -27,9 +28,10 @@ export class FileStructureService {
   getDashboardStats(): Observable<DashboardStats> {
     return this.getFileStructure().pipe(
       map((rootNode) => {
-        // If loading is successful, calculate liveDeals and underReview from rootNode
         let liveDealsCount = 0;
         let underReviewCount = 0;
+        const companyName =
+          rootNode.name || this.fallbackDashboardStats.companyName;
 
         // Find investment nodes and count their statuses
         const processNode = (node: FileNode) => {
@@ -49,6 +51,7 @@ export class FileStructureService {
         processNode(rootNode);
 
         return {
+          companyName: companyName,
           liveDeals: liveDealsCount,
           assetsUnderManagement:
             this.fallbackDashboardStats.assetsUnderManagement,
