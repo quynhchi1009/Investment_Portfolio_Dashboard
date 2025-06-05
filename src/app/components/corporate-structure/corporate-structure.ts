@@ -17,7 +17,6 @@ export class CorporateStructureComponent implements OnInit {
   sectionTitle: string = 'Corporate Structure';
   filterType: string = 'all';
 
-  // Variables to store counts for badges
   allCount: number = 0;
   activeCount: number = 0;
   reviewCount: number = 0;
@@ -37,34 +36,34 @@ export class CorporateStructureComponent implements OnInit {
     this.sectionTitle = 'Corporate Structure';
     this.currentViewChildren =
       this.rootNode?.children?.filter((n) => n.type === 'entity') || [];
-    this.navigationStack = []; // Reset stack
-    this.filterContent('all'); // Apply initial 'All' filter
-    this.updateCounts(); // Update badge counts
+    this.navigationStack = [];
+    this.filterContent('all');
+    this.updateCounts();
   }
 
   showInvestments(entity: FileNode): void {
     this.sectionTitle = 'Portfolio Overview';
-    this.navigationStack.push(this.currentNode as FileNode); // Save parent entity to stack
-    this.currentNode = entity; // Update current node to the selected entity
+    this.navigationStack.push(this.currentNode as FileNode);
+    this.currentNode = entity;
     // Get all investment children of that entity
     this.currentViewChildren =
       entity.children?.filter((n) => n.type === 'investment') || [];
-    this.filterContent('all'); // Apply initial 'All' filter
-    this.updateCounts(); // Update badge counts
+    this.filterContent('all');
+    this.updateCounts();
   }
 
   goBack(): void {
     if (this.navigationStack.length > 0) {
       this.currentNode = this.navigationStack.pop();
       if (this.currentNode === this.rootNode) {
-        this.showEntities(); // Go back to displaying root entities
+        this.showEntities();
       } else if (this.currentNode?.type === 'entity') {
-        this.showInvestments(this.currentNode); // Go back to displaying investments of that entity
+        this.showInvestments(this.currentNode);
       }
     } else {
-      this.showEntities(); // If nothing left in stack, go back to root entities
+      this.showEntities();
     }
-    this.updateCounts(); // Update badge counts after going back
+    this.updateCounts();
   }
 
   filterContent(filter: string): void {
@@ -90,20 +89,15 @@ export class CorporateStructureComponent implements OnInit {
       const status = node.status?.toLowerCase();
       if (node.type === 'entity') {
         if (status === 'active') {
-          // 'Active' status for Entity
           this.activeCount++;
         }
         // Add logic for 'review'/'closed' if entity has these statuses in the future
-        // Currently only 'Active' for entity in JSON
       } else if (node.type === 'investment') {
         if (status === 'ongoing') {
-          // 'Ongoing' status for Investment
           this.activeCount++;
         } else if (status === 'due diligence') {
-          // 'Due Diligence' status for Investment
           this.reviewCount++;
         } else if (status === 'closed') {
-          // 'Closed' status for Investment
           this.closedCount++;
         }
       }

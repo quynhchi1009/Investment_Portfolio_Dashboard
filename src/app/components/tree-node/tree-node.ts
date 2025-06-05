@@ -26,15 +26,15 @@ export class TreeNodeComponent implements OnInit {
   getIcon(nodeType: string): string {
     switch (nodeType) {
       case 'entity':
-        return '🏢'; // Building
+        return '🏢';
       case 'investment':
-        return '💰'; // Money bag
+        return '💰';
       case 'directory':
-        return '📁'; // Folder
+        return '📁';
       case 'file':
-        return '📄'; // Document
+        return '📄';
       default:
-        return '❓'; // Question mark
+        return '❓';
     }
   }
 
