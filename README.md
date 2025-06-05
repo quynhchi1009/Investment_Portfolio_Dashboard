@@ -36,28 +36,31 @@ This dashboard offers a comprehensive and interactive experience for portfolio m
 ## Project Structure
 
 The project follows a standard Angular CLI generated structure, organized into modular components and services for maintainability:
+
+```
 Investment_Portfolio_Dashboard/
 ├── src/
-│ ├── app/
-│ │ ├── components/
-│ │ │ ├── corporate-structure/ (Main content area: displays entities/investments, handles navigation & filtering)
-│ │ │ ├── header/ (Top section: company overview & stats)
-│ │ │ ├── sidebar/ (Right sidebar: recent activity & quick actions)
-│ │ │ ├── tree-node/ (Individual node for tree view - currently unused in main UI)
-│ │ │ └── tree-view/ (Container for tree view - currently unused in main UI)
-│ │ ├── models/ (TypeScript interfaces for data structures)
-│ │ ├── pipes/
-│ │ │ └── filter-nodes.pipe.ts (Custom pipe for dynamic filtering logic)
-│ │ ├── services/
-│ │ │ └── file-structure.service.ts (Service to fetch & process data from JSON)
-│ │ ├── app.component.ts/.html/.css (Root application component)
-│ │ └── app.module.ts (Main Angular module)
-│ ├── assets/
-│ │ └── data/
-│ │ └── file-structure.json (The hierarchical data source)
-│ ├── environments/ (Environment-specific configurations)
-│ └── styles.css (Global styles)
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── corporate-structure/   # Main content area: displays entities/investments, handles navigation & filtering
+│   │   │   ├── header/                # Top section: company overview & stats
+│   │   │   ├── sidebar/               # Right sidebar: recent activity & quick actions
+│   │   │   ├── tree-node/             # Individual node for tree view - currently unused in main UI
+│   │   │   └── tree-view/             # Container for tree view - currently unused in main UI
+│   │   ├── models/                    # TypeScript interfaces for data structures
+│   │   ├── pipes/
+│   │   │   └── filter-nodes.pipe.ts   # Custom pipe for dynamic filtering logic
+│   │   ├── services/
+│   │   │   └── file-structure.service.ts # Service to fetch & process data from JSON
+│   │   ├── app.component.ts/.html/.css # Root application component
+│   │   └── app.module.ts              # Main Angular module
+│   ├── assets/
+│   │   └── data/
+│   │       └── file-structure.json    # The hierarchical data source
+│   ├── environments/                  # Environment-specific configurations
+│   └── styles.css                     # Global styles
 └── ... (Angular configuration files like angular.json, package.json etc.)
+```
 
 ## Getting Started
 
@@ -68,25 +71,27 @@ Follow these instructions to get a copy of the project up and running on your lo
 - Node.js (LTS version recommended)
 - npm (comes with Node.js) or Yarn
 - Angular CLI:
+
   ```bash
   npm install -g @angular/cli
   ```
 
 ### Installation
 
-1.  Clone the repository:
+1. Clone the repository:
 
-    ```bash
-    git clone [https://github.com/your-username/Investment_Portfolio_Dashboard.git](https://github.com/your-username/Investment_Portfolio_Dashboard.git)
-    cd Investment_Portfolio_Dashboard
-    ```
+   ```bash
+   git clone https://github.com/your-username/Investment_Portfolio_Dashboard.git
+   cd Investment_Portfolio_Dashboard
+   ```
 
-    (Replace `your-username/Investment_Portfolio_Dashboard.git` with your actual repository URL)
+   (Replace `your-username/Investment_Portfolio_Dashboard.git` with your actual repository URL)
 
-2.  Install npm dependencies:
-    ```bash
-    npm install
-    ```
+2. Install npm dependencies:
+
+   ```bash
+   npm install
+   ```
 
 ### Running the Application
 
@@ -95,3 +100,37 @@ To run the application in development mode:
 ```bash
 ng serve --open
 ```
+
+This command will:
+
+- Compile the application.
+- Start a development server.
+- Open the application in your default web browser at [http://localhost:4200/](http://localhost:4200/).
+
+## Usage
+
+- Navigate through the corporate structure by clicking on entity cards.
+- Use the "Back" button or breadcrumbs to return to previous views.
+- Apply filters (All, Active, Under Review, Closed Deals) to dynamically narrow down the displayed entities or investments.
+- Hover over cards and activity items to experience interactive visual feedback.
+
+## Contributing
+
+Contributions are welcome! If you have suggestions for improvements, please feel free to:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature/YourFeature`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'feat: Add YourFeature'`).
+5. Push to the branch (`git push origin feature/YourFeature`).
+6. Open a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+[Your Name/GitHub Username] - [Your Email/LinkedIn Profile (Optional)]
+
+Project Link: [https://github.com/your-username/Investment_Portfolio_Dashboard](https://github.com/your-username/Investment_Portfolio_Dashboard) (Update with your actual link)
