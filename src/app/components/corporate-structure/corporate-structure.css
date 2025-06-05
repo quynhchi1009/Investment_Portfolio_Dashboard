@@ -1,4 +1,3 @@
-/* src/app/components/corporate-structure/corporate-structure.component.css */
 .pipeline-section {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -11,7 +10,7 @@
 .section-header {
   display: flex;
   justify-content: space-between;
-  align-items: center; /* Điều chỉnh thành center để căn chỉnh với filter-tabs */
+  align-items: center;
   margin-bottom: 25px;
 }
 
@@ -46,7 +45,7 @@
 .filter-tabs {
   display: flex;
   gap: 10px;
-  margin-top: 10px; /* Giữ margin-top 10px như trong claude.html mới */
+  margin-top: 10px;
 }
 
 .filter-tab {
@@ -79,17 +78,32 @@
   border: 1px solid #e2e8f0;
   transition: all 0.3s ease;
   cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
 .investment-card:hover,
 .entity-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-
-  .card-actions {
-    opacity: 1;
-  }
+  transform: translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+  border-color: #667eea;
 }
+
+.investment-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  transition: left 0.5s ease;
+}
+
+.investment-card:hover::before {
+  left: 100%;
+}
+
 
 .entity-card {
   border-left: 4px solid #667eea;
@@ -118,27 +132,27 @@
 }
 
 .status-badge {
-  padding: 4px 12px; /* Giữ padding 4px 12px */
+  padding: 6px 12px;
   border-radius: 12px;
   font-size: 11px;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  /* box-shadow bị loại bỏ trong HTML mới nhất */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .status-active {
-  background: #c6f6d5; /* Chỉ có màu đơn, không gradient như cũ */
+  background: linear-gradient(45deg, #c6f6d5, #9ae6b4);
   color: #22543d;
 }
 
 .status-ongoing {
-  background: #c6f6d5; /* Theo claude.html mới nhất */
+  background: linear-gradient(45deg, #c6f6d5, #9ae6b4);
   color: #22543d;
 }
 
 .status-due-diligence {
-  background: #fef5e7; /* Theo claude.html mới nhất */
+  background: linear-gradient(45deg, #fef5e7, #fed7aa);
   color: #c05621;
 }
 
@@ -152,7 +166,13 @@
 
 .detail-item {
   text-align: center;
-  /* Không có padding/border-radius/transition như cũ */
+  padding: 8px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.detail-item:hover {
+  background: rgba(102, 126, 234, 0.05);
 }
 
 .detail-value {
@@ -183,7 +203,13 @@
   font-size: 10px;
   color: #4a5568;
   text-transform: capitalize;
-  /* Không có transition như cũ */
+  transition: all 0.3s ease;
+}
+
+.tag:hover {
+  background: #667eea;
+  color: white;
+  transform: scale(1.05);
 }
 
 .back-button {
@@ -213,6 +239,11 @@
   transition: opacity 0.3s ease;
 }
 
+.investment-card:hover .card-actions,
+.entity-card:hover .card-actions { 
+  opacity: 1;
+}
+
 .action-icon {
   background: rgba(255, 255, 255, 0.9);
   border: none;
@@ -236,13 +267,12 @@
 /* responsive */
 @media (max-width: 768px) {
   .section-header {
-    /* Vì section-header nằm trong corporate-structure */
-    flex-direction: column;
-    gap: 15px;
+      flex-direction: column;
+      gap: 15px;
   }
 
   .investment-details,
   .entity-details {
-    grid-template-columns: 1fr;
+      grid-template-columns: 1fr;
   }
 }
