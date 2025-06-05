@@ -1,0 +1,248 @@
+/* src/app/components/corporate-structure/corporate-structure.component.css */
+.pipeline-section {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 25px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Điều chỉnh thành center để căn chỉnh với filter-tabs */
+  margin-bottom: 25px;
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #718096;
+  margin-bottom: 15px;
+}
+
+.breadcrumb-item {
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.breadcrumb-item:hover {
+  color: #667eea;
+}
+
+.breadcrumb-separator {
+  color: #cbd5e0;
+}
+
+.filter-tabs {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px; /* Giữ margin-top 10px như trong claude.html mới */
+}
+
+.filter-tab {
+  padding: 8px 16px;
+  border-radius: 20px;
+  background: #f7fafc;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.filter-tab.active {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+}
+
+.investment-grid {
+  display: grid;
+  gap: 20px;
+}
+
+.investment-card,
+.entity-card {
+  background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.investment-card:hover,
+.entity-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+
+  .card-actions {
+    opacity: 1;
+  }
+}
+
+.entity-card {
+  border-left: 4px solid #667eea;
+}
+
+.investment-header,
+.entity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 15px;
+}
+
+.investment-name,
+.entity-name {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2d3748;
+  margin-bottom: 5px;
+}
+
+.investment-entity,
+.entity-info {
+  font-size: 12px;
+  color: #718096;
+}
+
+.status-badge {
+  padding: 4px 12px; /* Giữ padding 4px 12px */
+  border-radius: 12px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  /* box-shadow bị loại bỏ trong HTML mới nhất */
+}
+
+.status-active {
+  background: #c6f6d5; /* Chỉ có màu đơn, không gradient như cũ */
+  color: #22543d;
+}
+
+.status-ongoing {
+  background: #c6f6d5; /* Theo claude.html mới nhất */
+  color: #22543d;
+}
+
+.status-due-diligence {
+  background: #fef5e7; /* Theo claude.html mới nhất */
+  color: #c05621;
+}
+
+.investment-details,
+.entity-details {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.detail-item {
+  text-align: center;
+  /* Không có padding/border-radius/transition như cũ */
+}
+
+.detail-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.detail-label {
+  font-size: 10px;
+  color: #a0aec0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-top: 2px;
+}
+
+.investment-tags,
+.entity-tags {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tag {
+  padding: 4px 8px;
+  background: #edf2f7;
+  border-radius: 6px;
+  font-size: 10px;
+  color: #4a5568;
+  text-transform: capitalize;
+  /* Không có transition như cũ */
+}
+
+.back-button {
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.back-button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+/* Card Actions */
+.card-actions {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.action-icon {
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.action-icon:hover {
+  background: #667eea;
+  color: white;
+  transform: scale(1.1);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .section-header {
+    /* Vì section-header nằm trong corporate-structure */
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .investment-details,
+  .entity-details {
+    grid-template-columns: 1fr;
+  }
+}

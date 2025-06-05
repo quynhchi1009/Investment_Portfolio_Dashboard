@@ -1,3 +1,4 @@
+/* src/styles.css */
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +6,7 @@
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   min-height: 100vh;
   color: #1a202c;
@@ -17,231 +18,22 @@ body {
   padding: 20px;
 }
 
-/* Header */
-.header {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 20px 30px;
-  margin-bottom: 30px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.header-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-.logo {
-  font-size: 24px;
-  font-weight: 700;
-  color: #667eea;
-}
-
-.user-info {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.user-avatar {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(45deg, #667eea, #764ba2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-weight: 600;
-}
-
-.stats-row {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
-}
-
-.stat-card {
-  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
-  padding: 15px;
-  border-radius: 12px;
-  text-align: center;
-  position: relative;
-  cursor: help;
-  transition: all 0.3s ease;
-}
-
-.stat-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.stat-value {
-  font-size: 24px;
-  font-weight: 700;
-  color: #2d3748;
-  margin-bottom: 5px;
-}
-
-.stat-label {
-  font-size: 12px;
-  color: #718096;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-/* Tooltip */
-.tooltip {
-  position: absolute;
-  bottom: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #2d3748;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 6px;
-  font-size: 12px;
-  white-space: nowrap;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  z-index: 1000;
-  margin-bottom: 5px;
-}
-
-.tooltip::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  border: 5px solid transparent;
-  border-top-color: #2d3748;
-}
-
-.stat-card:hover .tooltip {
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Main Content */
+/* Main Content layout, vì nó ảnh hưởng đến bố cục chính của 2 cột */
 .main-content {
   display: grid;
   grid-template-columns: 1fr 350px;
   gap: 30px;
 }
 
-/* Investment Pipeline */
-.pipeline-section {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 16px;
-  padding: 25px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 25px;
-}
-
-.section-title {
-  font-size: 20px;
-  font-weight: 600;
-  color: #2d3748;
-}
-
-.filter-controls {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  align-items: flex-end;
-}
-
-.results-count {
-  font-size: 12px;
-  color: #718096;
-}
-
-.filter-tabs {
-  display: flex;
-  gap: 10px;
-}
-
-.filter-badge {
-  background: rgba(255, 255, 255, 0.3);
-  color: inherit;
-  border-radius: 10px;
-  padding: 2px 6px;
-  font-size: 10px;
-  margin-left: 6px;
-}
-
-/* Responsive */
+/* Responsive chung cho layout chính (có thể lặp lại ở các component nếu cần ghi đè) */
 @media (max-width: 1024px) {
   .main-content {
-    grid-template-columns: 1fr;
-  }
-
-  .stats-row {
-    grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: 1fr;
   }
 }
 
 @media (max-width: 768px) {
   .container {
-    padding: 15px;
-  }
-
-  .header-top {
-    flex-direction: column;
-    gap: 15px;
-    text-align: center;
-  }
-
-  .stats-row {
-    grid-template-columns: 1fr;
-  }
-
-  .section-header {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .filter-controls {
-    align-items: stretch;
-  }
-}
-
-/* Loading State */
-.loading {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-}
-
-.loading-spinner {
-  width: 32px;
-  height: 32px;
-  border: 3px solid #e2e8f0;
-  border-top: 3px solid #667eea;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
+      padding: 15px;
   }
 }

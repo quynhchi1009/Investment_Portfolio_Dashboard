@@ -1,3 +1,4 @@
+/* src/app/components/sidebar/sidebar.component.css */
 .sidebar {
   display: flex;
   flex-direction: column;
@@ -24,19 +25,14 @@
   display: flex;
   align-items: flex-start;
   gap: 12px;
-  transition: all 0.3s ease;
+  /* transition bị loại bỏ trong HTML mới nhất */
 }
 
 .activity-item:last-child {
   border-bottom: none;
 }
 
-.activity-item:hover {
-  background: rgba(102, 126, 234, 0.05);
-  border-radius: 8px;
-  padding-left: 8px;
-  padding-right: 8px;
-}
+/* .activity-item:hover { ... } - bị loại bỏ trong HTML mới nhất */
 
 .activity-icon {
   width: 8px;
@@ -44,13 +40,10 @@
   border-radius: 50%;
   background: #667eea;
   margin-top: 6px;
-  transition: all 0.3s ease;
+  /* transition bị loại bỏ trong HTML mới nhất */
 }
 
-.activity-item:hover .activity-icon {
-  transform: scale(1.5);
-  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-}
+/* .activity-item:hover .activity-icon { ... } - bị loại bỏ trong HTML mới nhất */
 
 .activity-content {
   flex: 1;
@@ -81,10 +74,11 @@
   cursor: pointer;
   transition: all 0.3s ease;
   text-align: left;
-  position: relative;
-  overflow: hidden;
+  position: relative; /* Thêm lại position: relative cho before/after */
+  overflow: hidden; /* Thêm lại overflow: hidden cho before/after */
 }
 
+/* Thêm lại pseudo-elements cho hiệu ứng hover */
 .action-btn::before {
   content: '';
   position: absolute;
@@ -112,6 +106,6 @@
 }
 
 .action-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Giá trị shadow thay đổi */
 }

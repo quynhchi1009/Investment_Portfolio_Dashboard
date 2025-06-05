@@ -9,4 +9,5 @@ export interface FileNode {
   industry?: string;
   tags?: string[];
   children?: FileNode[];
+  investment?: string;
 }
