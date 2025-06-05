@@ -11,7 +11,6 @@ This project is an interactive web application built with **Angular** to visuali
   - [Installation](#installation)
   - [Running the Application](#running-the-application)
 - [Usage](#usage)
-- [Contributing](#contributing)
 - [License](#license)
 - [Contact](#contact)
 
@@ -113,17 +112,6 @@ This command will:
 - Use the "Back" button or breadcrumbs to return to previous views.
 - Apply filters (All, Active, Under Review, Closed Deals) to dynamically narrow down the displayed entities or investments.
 - Hover over cards and activity items to experience interactive visual feedback.
-
-## Contributing
-
-Contributions are welcome! If you have suggestions for improvements, please feel free to:
-
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/YourFeature`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'feat: Add YourFeature'`).
-5. Push to the branch (`git push origin feature/YourFeature`).
-6. Open a Pull Request.
 
 ## License
 
