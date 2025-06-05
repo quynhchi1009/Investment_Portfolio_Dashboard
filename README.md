@@ -131,6 +131,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 
-[Your Name/GitHub Username] - [Your Email/LinkedIn Profile (Optional)]
+Quynh Chi Lai - quynhchilai@icloud.com
 
-Project Link: [https://github.com/your-username/Investment_Portfolio_Dashboard](https://github.com/your-username/Investment_Portfolio_Dashboard) (Update with your actual link)
+Project Link: https://github.com/quynhchi1009/Investment_Portfolio_Dashboard
