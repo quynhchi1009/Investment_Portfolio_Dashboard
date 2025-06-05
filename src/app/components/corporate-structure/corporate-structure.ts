@@ -7,13 +7,12 @@ import { FileStructureService } from '../../services/file-structure';
   templateUrl: './corporate-structure.html',
   styleUrls: ['./corporate-structure.css'],
   standalone: false,
-
 })
 export class CorporateStructureComponent implements OnInit {
   rootNode: FileNode | undefined;
   currentNode: FileNode | undefined;
   currentViewChildren: FileNode[] = [];
-  navigationStack: FileNode[] = [];
+  navigationStack: FileNode[] = []; // Stack to track navigation path
   sectionTitle: string = 'Corporate Structure';
   filterType: string = 'all';
 
@@ -36,6 +35,7 @@ export class CorporateStructureComponent implements OnInit {
     this.sectionTitle = 'Corporate Structure';
     this.currentViewChildren =
       this.rootNode?.children?.filter((n) => n.type === 'entity') || [];
+    this.currentNode = this.rootNode;
     this.navigationStack = [];
     this.filterContent('all');
     this.updateCounts();
@@ -43,9 +43,22 @@ export class CorporateStructureComponent implements OnInit {
 
   showInvestments(entity: FileNode): void {
     this.sectionTitle = 'Portfolio Overview';
-    this.navigationStack.push(this.currentNode as FileNode);
+
+    // Find the position of the entity in the navigationStack, if it exists, and trim after that
+    const entityIndexInStack = this.navigationStack.indexOf(entity);
+    if (entityIndexInStack !== -1) {
+      this.navigationStack = this.navigationStack.slice(
+        0,
+        entityIndexInStack + 1
+      );
+    } else {
+      // If entity is not in the stack and currentNode is not that entity, push currentNode before navigating
+      if (this.currentNode && this.currentNode !== this.rootNode) {
+        this.navigationStack.push(this.currentNode);
+      }
+    }
+
     this.currentNode = entity;
-    // Get all investment children of that entity
     this.currentViewChildren =
       entity.children?.filter((n) => n.type === 'investment') || [];
     this.filterContent('all');
@@ -61,6 +74,7 @@ export class CorporateStructureComponent implements OnInit {
         this.showInvestments(this.currentNode);
       }
     } else {
+      // Special case: if stack is empty but currentNode is not rootNode, return to root entities
       this.showEntities();
     }
     this.updateCounts();
@@ -70,7 +84,6 @@ export class CorporateStructureComponent implements OnInit {
     this.filterType = filter;
   }
 
-  // --- Logic to update badge counts (important) ---
   updateCounts(): void {
     if (!this.currentViewChildren) {
       this.allCount = 0;
@@ -91,7 +104,6 @@ export class CorporateStructureComponent implements OnInit {
         if (status === 'active') {
           this.activeCount++;
         }
-        // Add logic for 'review'/'closed' if entity has these statuses in the future
       } else if (node.type === 'investment') {
         if (status === 'ongoing') {
           this.activeCount++;
@@ -104,20 +116,22 @@ export class CorporateStructureComponent implements OnInit {
     });
   }
 
-  // Methods to get breadcrumbs, icon, status text, amount label, etc.
+  // Breadcrumb logic
   getBreadcrumbs(): FileNode[] {
     const breadcrumbs: FileNode[] = [];
     if (this.rootNode) {
       breadcrumbs.push(this.rootNode);
+
       this.navigationStack.forEach((node) => {
         if (node !== this.rootNode) {
           breadcrumbs.push(node);
         }
       });
+
       if (
         this.currentNode &&
         this.currentNode !== this.rootNode &&
-        !this.navigationStack.includes(this.currentNode)
+        !breadcrumbs.includes(this.currentNode)
       ) {
         breadcrumbs.push(this.currentNode);
       }
@@ -125,6 +139,7 @@ export class CorporateStructureComponent implements OnInit {
     return breadcrumbs;
   }
 
+  // Get the number of investment children of an entity
   getInvestmentCount(node: FileNode): number {
     return node.children?.filter((c) => c.type === 'investment').length || 0;
   }
