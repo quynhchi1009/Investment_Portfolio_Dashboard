@@ -7,6 +7,7 @@ import { FileStructureService } from '../../services/file-structure';
   templateUrl: './corporate-structure.html',
   styleUrls: ['./corporate-structure.css'],
   standalone: false,
+
 })
 export class CorporateStructureComponent implements OnInit {
   rootNode: FileNode | undefined;
@@ -15,6 +16,12 @@ export class CorporateStructureComponent implements OnInit {
   navigationStack: FileNode[] = [];
   sectionTitle: string = 'Corporate Structure';
   filterType: string = 'all';
+
+  // Variables to store counts for badges
+  allCount: number = 0;
+  activeCount: number = 0;
+  reviewCount: number = 0;
+  closedCount: number = 0;
 
   constructor(private fileStructureService: FileStructureService) {}
 
@@ -29,49 +36,90 @@ export class CorporateStructureComponent implements OnInit {
   showEntities(): void {
     this.sectionTitle = 'Corporate Structure';
     this.currentViewChildren =
-      this.currentNode?.children?.filter((n) => n.type === 'entity') || [];
-    this.filterContent('all');
+      this.rootNode?.children?.filter((n) => n.type === 'entity') || [];
+    this.navigationStack = []; // Reset stack
+    this.filterContent('all'); // Apply initial 'All' filter
+    this.updateCounts(); // Update badge counts
   }
 
   showInvestments(entity: FileNode): void {
     this.sectionTitle = 'Portfolio Overview';
-    this.navigationStack.push(this.currentNode as FileNode);
-    this.currentNode = entity;
+    this.navigationStack.push(this.currentNode as FileNode); // Save parent entity to stack
+    this.currentNode = entity; // Update current node to the selected entity
+    // Get all investment children of that entity
     this.currentViewChildren =
       entity.children?.filter((n) => n.type === 'investment') || [];
-    this.filterContent('all');
+    this.filterContent('all'); // Apply initial 'All' filter
+    this.updateCounts(); // Update badge counts
   }
 
   goBack(): void {
     if (this.navigationStack.length > 0) {
       this.currentNode = this.navigationStack.pop();
       if (this.currentNode === this.rootNode) {
-        this.showEntities();
+        this.showEntities(); // Go back to displaying root entities
       } else if (this.currentNode?.type === 'entity') {
-        this.showInvestments(this.currentNode);
+        this.showInvestments(this.currentNode); // Go back to displaying investments of that entity
       }
     } else {
-      this.showEntities();
+      this.showEntities(); // If nothing left in stack, go back to root entities
     }
+    this.updateCounts(); // Update badge counts after going back
   }
 
   filterContent(filter: string): void {
     this.filterType = filter;
   }
 
+  // --- Logic to update badge counts (important) ---
+  updateCounts(): void {
+    if (!this.currentViewChildren) {
+      this.allCount = 0;
+      this.activeCount = 0;
+      this.reviewCount = 0;
+      this.closedCount = 0;
+      return;
+    }
+
+    this.allCount = this.currentViewChildren.length;
+    this.activeCount = 0;
+    this.reviewCount = 0;
+    this.closedCount = 0;
+
+    this.currentViewChildren.forEach((node) => {
+      const status = node.status?.toLowerCase();
+      if (node.type === 'entity') {
+        if (status === 'active') {
+          // 'Active' status for Entity
+          this.activeCount++;
+        }
+        // Add logic for 'review'/'closed' if entity has these statuses in the future
+        // Currently only 'Active' for entity in JSON
+      } else if (node.type === 'investment') {
+        if (status === 'ongoing') {
+          // 'Ongoing' status for Investment
+          this.activeCount++;
+        } else if (status === 'due diligence') {
+          // 'Due Diligence' status for Investment
+          this.reviewCount++;
+        } else if (status === 'closed') {
+          // 'Closed' status for Investment
+          this.closedCount++;
+        }
+      }
+    });
+  }
+
+  // Methods to get breadcrumbs, icon, status text, amount label, etc.
   getBreadcrumbs(): FileNode[] {
     const breadcrumbs: FileNode[] = [];
     if (this.rootNode) {
       breadcrumbs.push(this.rootNode);
-
-      // Iterate through the stack to add visited nodes
       this.navigationStack.forEach((node) => {
         if (node !== this.rootNode) {
-          // Avoid duplication if rootNode is also in the stack
           breadcrumbs.push(node);
         }
       });
-      // Add the current node if it is not the root node and not in the stack
       if (
         this.currentNode &&
         this.currentNode !== this.rootNode &&
@@ -105,20 +153,19 @@ export class CorporateStructureComponent implements OnInit {
   }
 
   getInvestmentAmountLabel(status: string | undefined): string {
-    if (!status) return 'Amount'; // Default label
+    if (!status) return 'Amount';
     return status === 'Due Diligence' ? 'Target Investment' : 'Amount Invested';
   }
 
-  // Placeholder functions for card actions
   openDetails(node: FileNode): void {
-    alert(`Opening details for: ${node.name}`);
+    alert(`Opening detailed view for: ${node.name} (Type: ${node.type})`);
   }
 
   editNode(node: FileNode): void {
-    alert(`Editing: ${node.name}`);
+    alert(`Editing: ${node.name} (Type: ${node.type})`);
   }
 
-  formatDate(dateString: string): string {
+  formatDate(dateString: string | undefined): string {
     if (!dateString) return 'N/A';
     const date = new Date(dateString);
     return date.toLocaleDateString('en-US', {

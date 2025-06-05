@@ -12,10 +12,24 @@
           </div>
           <h2 class="section-title">{{ sectionTitle }}</h2>
           <div class="filter-tabs" id="filterTabs">
-              <button class="filter-tab" [class.active]="filterType === 'all'" (click)="filterContent('all')">All</button>
-              <button class="filter-tab" [class.active]="filterType === 'active'" (click)="filterContent('active')">Active</button>
-              <button class="filter-tab" [class.active]="filterType === 'review'" (click)="filterContent('review')">Under Review</button>
-              <button class="filter-tab" [class.active]="filterType === 'closed'" (click)="filterContent('closed')">Closed Deals</button>
+              <button class="filter-tab" [class.active]="filterType === 'all'" (click)="filterContent('all')">
+                  All
+                  <span class="filter-badge">{{ allCount }}</span>
+              </button>
+              <button class="filter-tab" [class.active]="filterType === 'active'" (click)="filterContent('active')">
+                  <ng-container *ngIf="sectionTitle === 'Corporate Structure'">Active</ng-container>
+                  <ng-container *ngIf="sectionTitle === 'Portfolio Overview'">Ongoing</ng-container>
+                  <span class="filter-badge"> {{ activeCount }}</span>
+              </button>
+              <button class="filter-tab" [class.active]="filterType === 'review'" (click)="filterContent('review')">
+                  <ng-container *ngIf="sectionTitle === 'Corporate Structure'">Under Review</ng-container>
+                  <ng-container *ngIf="sectionTitle === 'Portfolio Overview'">Under Review</ng-container>
+                  <span class="filter-badge"> {{ reviewCount }}</span>
+              </button>
+              <button class="filter-tab" [class.active]="filterType === 'closed'" (click)="filterContent('closed')">
+                  Closed Deals
+                  <span class="filter-badge"> {{ closedCount }}</span>
+              </button>
           </div>
       </div>
   </div>
@@ -27,6 +41,11 @@
   <div class="investment-grid" id="contentGrid">
       <ng-container *ngFor="let node of currentViewChildren | filterNodes: filterType">
           <div class="entity-card" *ngIf="node.type === 'entity'" (click)="showInvestments(node)">
+              <div class="card-actions">
+                  <button class="action-icon" (click)="editNode(node); $event.stopPropagation()" title="Edit Entity">
+                      ✏️
+                  </button>
+              </div>
               <div class="entity-header">
                   <div>
                       <div class="entity-name">{{ node.name }}</div>
@@ -37,19 +56,23 @@
 
               <div class="entity-details">
                   <div class="detail-item">
-                      <div class="detail-value">{{ getInvestmentCount(node) }}</div> <div class="detail-label">Investments</div>
+                      <div class="detail-value">{{ getInvestmentCount(node) }}</div>
+                      <div class="detail-label">Investments</div>
                   </div>
                   <div class="detail-item">
                       <div class="detail-value">{{ node.owner }}</div>
                       <div class="detail-label">Lead Manager</div>
                   </div>
                   <div class="detail-item">
-                      <div class="detail-value">{{ formatDate(node.created_at) }}</div> <div class="detail-label">Established</div>
+                      <div class="detail-value">{{ formatDate(node.created_at) }}</div>
+                      <div class="detail-label">Established</div>
                   </div>
               </div>
 
               <div class="entity-tags">
-                  <span class="tag">{{ getNodeIndustryLower(node) }}</span> <span class="tag">{{ getNodeJurisdictionLower(node) }}</span> </div>
+                  <span class="tag" (click)="filterContent(getNodeIndustryLower(node)); $event.stopPropagation()">{{ getNodeIndustryLower(node) }}</span>
+                  <span class="tag" (click)="filterContent(getNodeJurisdictionLower(node)); $event.stopPropagation()">{{ getNodeJurisdictionLower(node) }}</span>
+              </div>
           </div>
 
           <div class="investment-card" *ngIf="node.type === 'investment'" [attr.data-status]="getNodeStatusLower(node)" (click)="openDetails(node)">
@@ -66,19 +89,22 @@
                   <div class="status-badge"
                        [class.status-ongoing]="getNodeStatusLower(node) === 'ongoing'"
                        [class.status-due-diligence]="getNodeStatusLower(node) === 'due diligence'">
-                      {{ getInvestmentStatusText(node.status) }} </div>
+                      {{ getInvestmentStatusText(node.status) }}
+                  </div>
               </div>
 
               <div class="investment-details">
                   <div class="detail-item">
                       <div class="detail-value">{{ node.investment }}</div>
-                      <div class="detail-label">{{ getInvestmentAmountLabel(node.status) }}</div> </div>
+                      <div class="detail-label">{{ getInvestmentAmountLabel(node.status) }}</div>
+                  </div>
                   <div class="detail-item">
                       <div class="detail-value">{{ node.owner }}</div>
                       <div class="detail-label">Lead Manager</div>
                   </div>
                   <div class="detail-item">
-                      <div class="detail-value">{{ formatDate(node.last_modified) }}</div> <div class="detail-label">Last Activity</div>
+                      <div class="detail-value">{{ formatDate(node.last_modified) }}</div>
+                      <div class="detail-label">Last Activity</div>
                   </div>
               </div>
 
@@ -89,7 +115,6 @@
       </ng-container>
 
       <div class="empty-state" *ngIf="(currentViewChildren | filterNodes: filterType)?.length === 0">
-          <div class="empty-state-icon">📊</div>
           <div>No items match your current filter</div>
           <button class="clear-filters-btn" (click)="filterContent('all')">Show All</button>
       </div>

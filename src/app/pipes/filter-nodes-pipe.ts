@@ -11,29 +11,45 @@ export class FilterNodesPipe implements PipeTransform {
       return nodes || [];
     }
 
-    return nodes.filter((node) => {
-      const status = node.status?.toLowerCase();
-      const industry = node.industry?.toLowerCase();
-      const jurisdiction = node.jurisdiction?.toLowerCase();
-      const tags = node.tags?.map((t) => t.toLowerCase()) || [];
+    const lowerCaseFilter = filter.toLowerCase();
 
-      switch (filter) {
-        case 'active':
-          return (
-            (node.type === 'entity' && status === 'active') ||
-            (node.type === 'investment' && status === 'ongoing')
-          );
-        case 'review':
-          return node.type === 'investment' && status === 'due diligence';
-        case 'closed':
-          return node.type === 'investment' && status === 'closed';
-        default:
-          return (
-            tags.includes(filter.toLowerCase()) ||
-            industry === filter.toLowerCase() ||
-            jurisdiction === filter.toLowerCase()
-          );
+    return nodes.filter((node) => {
+      const nodeStatus = node.status?.toLowerCase();
+
+      if (node.type === 'entity') {
+        // Filter for ENTITIES (Corporate Structure page)
+        switch (lowerCaseFilter) {
+          case 'active':
+            return nodeStatus === 'active';
+          case 'review':
+          case 'closed':
+            return false;
+          default: {
+            // Filter by industry or jurisdiction for entity
+            const entityIndustry = node.industry?.toLowerCase();
+            const entityJurisdiction = node.jurisdiction?.toLowerCase();
+            return (
+              entityIndustry === lowerCaseFilter ||
+              entityJurisdiction === lowerCaseFilter
+            );
+          }
+        }
+      } else if (node.type === 'investment') {
+        // Filter for INVESTMENTS (Portfolio Overview page)
+        switch (lowerCaseFilter) {
+          case 'active':
+            return nodeStatus === 'ongoing';
+          case 'review':
+            return nodeStatus === 'due diligence';
+          case 'closed':
+            return nodeStatus === 'closed';
+          default: {
+            const investmentTags = node.tags?.map((t) => t.toLowerCase()) || [];
+            return investmentTags.includes(lowerCaseFilter);
+          }
+        }
       }
+      return false;
     });
   }
 }
