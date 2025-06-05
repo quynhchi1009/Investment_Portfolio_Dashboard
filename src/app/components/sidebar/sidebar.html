@@ -1,0 +1,53 @@
+<div class="sidebar">
+  <div class="sidebar-card">
+      <h3 class="section-title" style="margin-bottom: 15px;">Recent Activity</h3>
+      <div class="recent-activity">
+          <div class="activity-item">
+              <div class="activity-icon"></div>
+              <div class="activity-content">
+                  <div class="activity-text">Q1 financial report uploaded - Orion Partners</div>
+                  <div class="activity-time">2 hours ago</div>
+              </div>
+          </div>
+          <div class="activity-item">
+              <div class="activity-icon"></div>
+              <div class="activity-content">
+                  <div class="activity-text">Risk assessment completed - TechNova Series A</div>
+                  <div class="activity-time">5 hours ago</div>
+              </div>
+          </div>
+          <div class="activity-item">
+              <div class="activity-icon"></div>
+              <div class="activity-content">
+                  <div class="activity-text">Review process initiated - NeoRetail Venture</div>
+                  <div class="activity-time">1 day ago</div>
+              </div>
+          </div>
+          <div class="activity-item">
+              <div class="activity-icon"></div>
+              <div class="activity-content">
+                  <div class="activity-text">Annual compliance audit - All entities</div>
+                  <div class="activity-time">2 days ago</div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="sidebar-card">
+      <h3 class="section-title" style="margin-bottom: 15px;">Quick Actions</h3>
+      <div class="quick-actions">
+          <button class="action-btn primary" (click)="addNewDeal()">🚀 Add New Deal</button>
+          <button class="action-btn secondary" (click)="generateReport()">📊 Export Portfolio Report</button>
+          <button class="action-btn secondary" (click)="openDocuments()">📁 View All Documents</button>
+          <button class="action-btn secondary" (click)="runRiskAnalysis()">⚠️ Run Risk Analysis</button>
+          <button class="action-btn secondary" (click)="manageTeams()">👥 Manage Access & Teams</button>
+      </div>
+  </div>
+
+  <div class="sidebar-card">
+      <h3 class="section-title" style="margin-bottom: 15px;">Corporate Structure</h3>
+      <div id="tree-view-container">
+          <app-tree-view *ngIf="rootNode" [node]="rootNode"></app-tree-view>
+      </div>
+  </div>
+</div>

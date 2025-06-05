@@ -1,0 +1,194 @@
+{
+  "name": "Alpha Holdings Ltd.",
+  "type": "entity",
+  "jurisdiction": "United Kingdom",
+  "created_at": "2020-01-01",
+  "last_modified": "2025-05-01",
+  "owner": "Global HQ",
+  "status": "Active",
+  "industry": "Financial Services",
+  "children": [
+    {
+      "name": "Beta Capital GmbH",
+      "type": "entity",
+      "jurisdiction": "Germany",
+      "created_at": "2021-03-12",
+      "last_modified": "2025-04-01",
+      "owner": "EU Region Lead",
+      "status": "Active",
+      "industry": "Private Equity",
+      "children": [
+        {
+          "name": "TechNova Series A",
+          "type": "investment",
+          "created_at": "2022-06-10",
+          "last_modified": "2025-01-15",
+          "owner": "Erik Schmitt",
+          "status": "Ongoing",
+          "tags": ["startup", "technology", "equity"],
+          "children": [
+            {
+              "name": "Documents",
+              "type": "directory",
+              "owner": "Legal Team",
+              "children": []
+            },
+            {
+              "name": "Reports",
+              "type": "directory",
+              "owner": "Finance",
+              "children": []
+            },
+            {
+              "name": "Contracts",
+              "type": "directory",
+              "owner": "Legal Team",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "GreenFund Infrastructure",
+          "type": "investment",
+          "created_at": "2023-02-01",
+          "last_modified": "2025-03-05",
+          "owner": "Anna Müller",
+          "status": "Ongoing",
+          "tags": ["infrastructure", "sustainable"],
+          "children": [
+            {
+              "name": "Documents",
+              "type": "directory",
+              "owner": "Project Mgmt",
+              "children": []
+            },
+            {
+              "name": "Reports",
+              "type": "directory",
+              "owner": "Finance",
+              "children": []
+            }
+          ]
+        },
+        {
+          "name": "NeoRetail Venture Fund",
+          "type": "investment",
+          "created_at": "2024-01-10",
+          "last_modified": "2025-02-20",
+          "owner": "Sophie Weber",
+          "status": "Due Diligence",
+          "tags": ["retail", "VC"],
+          "children": [
+            {
+              "name": "Due Diligence",
+              "type": "directory",
+              "owner": "Risk Team",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Orion Partners Inc.",
+      "type": "entity",
+      "jurisdiction": "United States",
+      "created_at": "2021-07-19",
+      "last_modified": "2025-05-15",
+      "owner": "US Ops Director",
+      "status": "Active",
+      "industry": "Asset Management",
+      "children": [
+        {
+          "name": "Compliance",
+          "type": "directory",
+          "owner": "Katherine Chen",
+          "children": [
+            {
+              "name": "policy.pdf",
+              "type": "file",
+              "created_at": "2021-08-01",
+              "last_modified": "2024-07-01",
+              "owner": "Compliance Officer"
+            },
+            {
+              "name": "audit.docx",
+              "type": "file",
+              "created_at": "2022-01-15",
+              "last_modified": "2024-12-15",
+              "owner": "Audit Team"
+            }
+          ]
+        },
+        {
+          "name": "Financials",
+          "type": "directory",
+          "owner": "Finance Dept",
+          "children": [
+            {
+              "name": "Q1_report.xlsx",
+              "type": "file",
+              "created_at": "2022-04-01",
+              "last_modified": "2025-03-15",
+              "owner": "CFO"
+            },
+            {
+              "name": "Q2_report.xlsx",
+              "type": "file",
+              "created_at": "2022-07-01",
+              "last_modified": "2025-03-15",
+              "owner": "CFO"
+            }
+          ]
+        },
+        {
+          "name": "Risk Management",
+          "type": "directory",
+          "owner": "Michael O’Donnell",
+          "children": [
+            {
+              "name": "risk_matrix.xlsx",
+              "type": "file",
+              "created_at": "2022-03-12",
+              "last_modified": "2025-01-01",
+              "owner": "Risk Analyst"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sigma Operations Pty Ltd",
+      "type": "entity",
+      "jurisdiction": "Australia",
+      "created_at": "2023-05-01",
+      "last_modified": "2025-04-15",
+      "owner": "Regional Ops Manager",
+      "status": "Active",
+      "industry": "Logistics",
+      "children": [
+        {
+          "name": "Operations",
+          "type": "directory",
+          "owner": "James Li",
+          "children": [
+            {
+              "name": "logistics.docx",
+              "type": "file",
+              "created_at": "2023-05-10",
+              "last_modified": "2024-11-01",
+              "owner": "Ops Team"
+            },
+            {
+              "name": "inventory.xlsx",
+              "type": "file",
+              "created_at": "2023-05-12",
+              "last_modified": "2024-12-20",
+              "owner": "Inventory Manager"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

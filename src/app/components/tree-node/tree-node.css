@@ -1,0 +1,98 @@
+/* tree-node.component.css */
+.tree-node {
+  margin-left: 15px;
+  padding: 5px 0;
+  position: relative;
+}
+
+.node-header {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+  font-size: 14px;
+  color: #2d3748;
+  position: relative;
+}
+
+.node-header:hover {
+  background-color: #edf2f7;
+}
+
+.toggle-icon {
+  margin-right: 5px;
+  width: 15px;
+  text-align: center;
+  font-weight: bold;
+  color: #667eea;
+}
+
+.node-icon {
+  margin-right: 8px;
+  font-size: 16px; /* Để icon lớn hơn một chút */
+}
+
+.node-name {
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.node-meta {
+  font-size: 11px;
+  color: #718096;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  position: relative;
+  cursor: help; /* Để chỉ ra rằng có tooltip */
+}
+
+.node-children {
+  border-left: 1px dashed #cbd5e0;
+  margin-left: 12px; /* Căn chỉnh với toggle-icon */
+  padding-left: 10px;
+}
+
+/* Tooltip cho metadata */
+.node-meta::before {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2d3748;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  white-space: pre-wrap; /* Cho phép xuống dòng */
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  margin-bottom: 5px;
+  max-width: 250px; /* Giới hạn chiều rộng tooltip */
+  text-align: left;
+}
+
+.node-meta::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border: 5px solid transparent;
+  border-top-color: #2d3748;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.node-meta:hover::before,
+.node-meta:hover::after {
+  opacity: 1;
+  visibility: visible;
+}

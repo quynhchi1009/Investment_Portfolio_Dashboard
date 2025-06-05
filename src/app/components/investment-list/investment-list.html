@@ -1,0 +1,73 @@
+<div class="pipeline-section">
+  <div class="section-header">
+      <h2 class="section-title">Active Investments</h2>
+      <div class="filter-controls">
+          <div class="results-count">Showing <span id="results-count">{{ filteredInvestments.length }}</span> investments</div>
+          <div class="filter-tabs">
+              <button class="filter-tab" [class.active]="currentFilter === 'all'" (click)="filterInvestments('all')">
+                  All Investments
+                  <span class="filter-badge">{{ allInvestmentsCount }}</span> </button>
+              <button class="filter-tab" [class.active]="currentFilter === 'active'" (click)="filterInvestments('active')">
+                  Active
+                  <span class="filter-badge">{{ activeInvestmentsCount }}</span> </button>
+              <button class="filter-tab" [class.active]="currentFilter === 'review'" (click)="filterInvestments('review')">
+                  Under Review
+                  <span class="filter-badge">{{ reviewInvestmentsCount }}</span> </button>
+              <button class="filter-tab" [class.active]="currentFilter === 'closed'" (click)="filterInvestments('closed')">
+                  Closed Deals
+                  <span class="filter-badge">{{ closedInvestmentsCount }}</span> </button>
+          </div>
+      </div>
+  </div>
+
+  <div *ngIf="isLoading" class="loading">
+      <div class="loading-spinner"></div>
+  </div>
+
+  <div *ngIf="!isLoading && filteredInvestments.length > 0" class="investment-grid">
+      <div class="investment-card"
+           *ngFor="let investment of filteredInvestments"
+           [attr.data-status]="investment.status"
+           (click)="openDetails(investment.id)">
+          <div class="card-actions">
+              <button class="action-icon" (click)="editInvestment(investment.id); $event.stopPropagation()" title="Edit Investment">
+                  ✏️
+              </button>
+          </div>
+          <div class="investment-header">
+              <div>
+                  <div class="investment-name">{{ investment.name }}</div>
+                  <div class="investment-entity">{{ investment.entity }} • Germany</div>
+              </div>
+              <div class="status-badge" [class.status-active]="investment.status === 'active'" [class.status-review]="investment.status === 'review'">
+                  {{ investment.status === 'active' ? 'Active' : (investment.status === 'review' ? 'Under Review' : 'Closed') }}
+              </div>
+          </div>
+
+          <div class="investment-details">
+              <div class="detail-item">
+                  <div class="detail-value">{{ investment.capital }}</div>
+                  <div class="detail-label">{{ investment.status === 'review' ? 'Proposed Amount' : 'Capital Deployed' }}</div>
+              </div>
+              <div class="detail-item">
+                  <div class="detail-value">{{ investment.manager }}</div>
+                  <div class="detail-label">Lead Manager</div>
+              </div>
+              <div class="detail-item">
+                  <div class="detail-value">{{ investment.lastActivity }}</div>
+                  <div class="detail-label">Last Activity</div>
+              </div>
+          </div>
+
+          <div class="investment-tags">
+              <span class="tag" *ngFor="let tag of investment.tags" (click)="filterByTag(tag); $event.stopPropagation()">{{ tag }}</span>
+          </div>
+      </div>
+  </div>
+
+  <div *ngIf="!isLoading && filteredInvestments.length === 0" class="empty-state">
+      <div class="empty-state-icon">📊</div>
+      <div>No investments match your current filter</div>
+      <button class="clear-filters-btn" (click)="clearFilters()">Show All</button>
+  </div>
+</div>

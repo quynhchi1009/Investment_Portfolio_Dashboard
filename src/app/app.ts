@@ -1,12 +1,36 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import fileStructure from '../assets/data/file-structure.json';
+
+interface TreeNode {
+  name: string;
+  type: string;
+  owner?: string;
+  status?: string;
+  children?: TreeNode[];
+  expanded?: boolean;
+}
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css'],
+  standalone: false,
 })
-export class App {
-  protected title = 'Investment_Portfolio_Dashboard';
+export class AppComponent implements OnInit {
+  title = 'Alpha Holdings';
+  treeData: TreeNode = fileStructure;
+
+  ngOnInit() {
+    console.log('Loaded file structure:', this.treeData);
+  }
+
+  // Số lượng child nodes
+  getChildCount(node: TreeNode): number {
+    return node.children ? node.children.length : 0;
+  }
+
+  // Expand/Collapse (tuỳ chỉnh)
+  toggleNode(node: TreeNode) {
+    node['expanded'] = !node['expanded'];
+  }
 }
