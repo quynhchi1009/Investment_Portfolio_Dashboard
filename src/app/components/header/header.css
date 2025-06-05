@@ -1,3 +1,4 @@
+/* Header Container Styles */
 .header {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -8,6 +9,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Header Top Section */
 .header-top {
   display: flex;
   justify-content: space-between;
@@ -15,12 +17,14 @@
   margin-bottom: 15px;
 }
 
+/* Logo Styles */
 .logo {
   font-size: 24px;
   font-weight: 700;
   color: #667eea;
 }
 
+/* User Info & Avatar */
 .user-info {
   display: flex;
   align-items: center;
@@ -39,6 +43,7 @@
   font-weight: 600;
 }
 
+/* Company Info Section */
 .company-info {
   background: linear-gradient(135deg, #f0f4ff 0%, #e8f2ff 100%);
   padding: 12px 40px;
@@ -67,6 +72,7 @@
   margin-bottom: 2px;
 }
 
+/* Stats Row & Stat Cards */
 .stats-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -102,7 +108,7 @@
   letter-spacing: 0.5px;
 }
 
-/* Tooltip */
+/* Tooltip Styles */
 .tooltip {
   position: absolute;
   bottom: 100%;
@@ -136,7 +142,7 @@
   visibility: visible;
 }
 
-/* Responsive */
+/* Responsive Styles */
 @media (max-width: 1024px) {
   .stats-row {
     grid-template-columns: repeat(2, 1fr);

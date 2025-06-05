@@ -6,6 +6,19 @@ import { FileNode } from '../models/file-structure.model';
   standalone: false,
 })
 export class FilterNodesPipe implements PipeTransform {
+/**
+ * The function `transform` filters an array of `FileNode` objects based on a specified filter criteria
+ * for different types of nodes.
+ * @param {FileNode[] | null} nodes - The `nodes` parameter is an array of `FileNode` objects or
+ * `null`.
+ * @param {string} filter - The `filter` parameter is used to determine how the `nodes` array should be
+ * filtered. The function checks the type of each node in the array (`entity` or `investment`) and
+ * applies specific filtering logic based on the `filter` value provided.
+ * @returns The `transform` function takes in an array of `FileNode` objects and a filter string. It
+ * filters the nodes based on the filter criteria provided. If the nodes array is null or the filter is
+ * set to 'all', it returns an empty array. Otherwise, it filters the nodes based on their type
+ * ('entity' or 'investment') and the filter criteria.
+ */
   transform(nodes: FileNode[] | null, filter: string): FileNode[] {
     if (!nodes || filter === 'all') {
       return nodes || [];

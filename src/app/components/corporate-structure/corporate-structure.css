@@ -1,3 +1,4 @@
+/* Pipeline Section Container Styles */
 .pipeline-section {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -7,6 +8,7 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Header Container Styles */
 .section-header {
   display: flex;
   justify-content: space-between;
@@ -20,6 +22,7 @@
   color: #2d3748;
 }
 
+/* Breadcrumb Styles */
 .breadcrumb {
   display: flex;
   align-items: center;
@@ -42,6 +45,7 @@
   color: #cbd5e0;
 }
 
+/* Filter Tabs Styles */
 .filter-tabs {
   display: flex;
   gap: 10px;
@@ -64,11 +68,13 @@
   color: white;
 }
 
+/* Investment Grid Styles */
 .investment-grid {
   display: grid;
   gap: 20px;
 }
 
+/* Card Styles */
 .investment-card,
 .entity-card {
   background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
@@ -104,11 +110,11 @@
   left: 100%;
 }
 
-
 .entity-card {
   border-left: 4px solid #667eea;
 }
 
+/* Card Header Styles */
 .investment-header,
 .entity-header {
   display: flex;
@@ -131,6 +137,7 @@
   color: #718096;
 }
 
+/* Status Badge Styles */
 .status-badge {
   padding: 6px 12px;
   border-radius: 12px;
@@ -156,6 +163,7 @@
   color: #c05621;
 }
 
+/* Card Details Grid Styles */
 .investment-details,
 .entity-details {
   display: grid;
@@ -189,6 +197,7 @@
   margin-top: 2px;
 }
 
+/* Card Tags Styles */
 .investment-tags,
 .entity-tags {
   display: flex;
@@ -212,6 +221,7 @@
   transform: scale(1.05);
 }
 
+/* Back Button Styles */
 .back-button {
   background: linear-gradient(45deg, #667eea, #764ba2);
   color: white;
@@ -230,7 +240,7 @@
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
 }
 
-/* Card Actions */
+/* Card Actions Styles */
 .card-actions {
   position: absolute;
   top: 15px;
@@ -264,7 +274,7 @@
   transform: scale(1.1);
 }
 
-/* Empty State */
+/* Empty State Styles */
 .empty-state {
   text-align: center;
   padding: 40px 20px;
@@ -290,6 +300,7 @@
   margin-bottom: 0;
 }
 
+/* Clear Filters Button Styles */
 .clear-filters-btn {
   margin-top: 0;
   padding: 0;
@@ -311,7 +322,7 @@
   box-shadow: none;
 }
 
-/* Responsive */
+/* Responsive Styles */
 @media (max-width: 768px) {
   .section-header {
       flex-direction: column;

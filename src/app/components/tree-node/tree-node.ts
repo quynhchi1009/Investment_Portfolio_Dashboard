@@ -19,10 +19,22 @@ export class TreeNodeComponent implements OnInit {
     }
   }
 
+/**
+ * The `toggleNode` function toggles the `isExpanded` property between true and false.
+ */
   toggleNode(): void {
     this.isExpanded = !this.isExpanded;
   }
 
+/**
+ * The function `getIcon` takes a `nodeType` string as input and returns a corresponding emoji icon
+ * based on the type.
+ * @param {string} nodeType - The `nodeType` parameter is a string that represents the type of a node
+ * in a system. It can have values like 'entity', 'investment', 'directory', or 'file'.
+ * @returns The `getIcon` function returns an emoji icon based on the `nodeType` parameter. If the
+ * `nodeType` is 'entity', it returns '🏢', if it is 'investment', it returns '💰', if it is
+ * 'directory', it returns '📁', if it is 'file', it returns '📄', and if it is none of
+ */
   getIcon(nodeType: string): string {
     switch (nodeType) {
       case 'entity':
@@ -38,6 +50,14 @@ export class TreeNodeComponent implements OnInit {
     }
   }
 
+/**
+ * The getTooltipText function generates a tooltip text based on the type of node (entity or
+ * investment) and its properties.
+ * @returns The `getTooltipText()` method returns a string that contains information about a node. The
+ * tooltip text includes details such as jurisdiction, industry, status, tags, owner, creation date,
+ * and last modified date of the node. The specific information displayed in the tooltip depends on the
+ * type of the node (entity or investment) and the available data for that node.
+ */
   getTooltipText(): string {
     let tooltip = '';
     if (this.node.type === 'entity') {

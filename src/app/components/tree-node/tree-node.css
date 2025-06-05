@@ -1,9 +1,11 @@
+/* Tree Node Container Styles */
 .tree-node {
   margin-left: 15px;
   padding: 5px 0;
   position: relative;
 }
 
+/* Node Header Styles */
 .node-header {
   display: flex;
   align-items: center;
@@ -16,10 +18,12 @@
   position: relative;
 }
 
+/* Node Header Hover Styles */
 .node-header:hover {
   background-color: #edf2f7;
 }
 
+/* Toggle Icon Styles */
 .toggle-icon {
   margin-right: 5px;
   width: 15px;
@@ -28,16 +32,19 @@
   color: #667eea;
 }
 
+/* Node Icon Styles */
 .node-icon {
   margin-right: 8px;
   font-size: 16px;
 }
 
+/* Node Name Styles */
 .node-name {
   font-weight: 500;
   margin-right: 8px;
 }
 
+/* Node Meta (Tooltip Trigger) Styles */
 .node-meta {
   font-size: 11px;
   color: #718096;
@@ -48,13 +55,14 @@
   cursor: help;
 }
 
+/* Node Children Container Styles */
 .node-children {
   border-left: 1px dashed #cbd5e0;
   margin-left: 12px;
   padding-left: 10px;
 }
 
-/* Tooltip */
+/* Tooltip Styles for Node Meta */
 .node-meta::before {
   content: attr(title);
   position: absolute;
@@ -76,6 +84,7 @@
   text-align: left;
 }
 
+/* Tooltip Arrow Styles */
 .node-meta::after {
   content: '';
   position: absolute;
@@ -90,6 +99,7 @@
   z-index: 1000;
 }
 
+/* Tooltip Visible State Styles */
 .node-meta:hover::before,
 .node-meta:hover::after {
   opacity: 1;

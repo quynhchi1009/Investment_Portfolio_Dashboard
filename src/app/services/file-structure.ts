@@ -26,10 +26,24 @@ export class FileStructureService {
 
   constructor(private readonly http: HttpClient) {}
 
+/**
+ * The getFileStructure function returns an Observable of type FileNode by making an HTTP GET request
+ * to a specified data URL.
+ * @returns An Observable of type FileNode is being returned.
+ */
   getFileStructure(): Observable<FileNode> {
     return this.http.get<FileNode>(this.dataUrl);
   }
 
+/**
+ * The function `getDashboardStats` retrieves and processes data from a file structure to generate
+ * statistics for a dashboard.
+ * @returns The `getDashboardStats()` method returns an Observable of type `DashboardStats`. The method
+ * first retrieves the file structure using `this.getFileStructure()` method, then processes the root
+ * node to collect various entity details and count the statuses of investment nodes to determine the
+ * number of live deals and deals under review. Finally, it returns an object containing the dashboard
+ * statistics such as company name, type, jurisdiction, established
+ */
   getDashboardStats(): Observable<DashboardStats> {
     return this.getFileStructure().pipe(
       map((rootNode) => {

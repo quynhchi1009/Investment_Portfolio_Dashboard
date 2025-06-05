@@ -1,9 +1,11 @@
+/* Sidebar Container Styles */
 .sidebar {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
+/* Sidebar Card Styles */
 .sidebar-card {
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
@@ -13,11 +15,13 @@
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
+/* Recent Activity List Styles */
 .recent-activity {
   max-height: 300px;
   overflow-y: auto;
 }
 
+/* Activity Item Styles */
 .activity-item {
   padding: 12px 0;
   border-bottom: 1px solid #e2e8f0;
@@ -38,6 +42,7 @@
   padding-right: 8px;
 }
 
+/* Activity Icon Styles */
 .activity-icon {
   width: 8px;
   height: 8px;
@@ -52,6 +57,7 @@
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
 }
 
+/* Activity Content Styles */
 .activity-content {
   flex: 1;
 }
@@ -67,11 +73,13 @@
   color: #a0aec0;
 }
 
+/* Quick Actions Section Styles */
 .quick-actions {
   display: grid;
   gap: 10px;
 }
 
+/* Action Button Styles */
 .action-btn {
   padding: 12px;
   border: none;
@@ -85,6 +93,7 @@
   overflow: hidden;
 }
 
+/* Action Button Hover Effect Styles */
 .action-btn::before {
   content: "";
   position: absolute;
@@ -105,17 +114,20 @@
   left: 100%;
 }
 
+/* Primary Action Button Styles */
 .action-btn.primary {
   background: linear-gradient(45deg, #667eea, #764ba2);
   color: white;
 }
 
+/* Secondary Action Button Styles */
 .action-btn.secondary {
   background: #f7fafc;
   color: #4a5568;
   border: 1px solid #e2e8f0;
 }
 
+/* Action Button Hover State Styles */
 .action-btn:hover {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
