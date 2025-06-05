@@ -14,7 +14,6 @@ export class TreeNodeComponent implements OnInit {
 
   ngOnInit(): void {
     this.childCount = this.node.children ? this.node.children.length : 0;
-    // Mở rộng các nút cấp cao nhất mặc định hoặc nếu chúng là entity/investment
     if (this.node.type === 'entity' || this.node.type === 'investment') {
       this.isExpanded = true;
     }
@@ -24,7 +23,6 @@ export class TreeNodeComponent implements OnInit {
     this.isExpanded = !this.isExpanded;
   }
 
-  // Phương thức để lấy icon dựa trên loại node
   getIcon(nodeType: string): string {
     switch (nodeType) {
       case 'entity':
@@ -40,7 +38,6 @@ export class TreeNodeComponent implements OnInit {
     }
   }
 
-  // Phương thức để hiển thị tooltip cho metadata
   getTooltipText(): string {
     let tooltip = '';
     if (this.node.type === 'entity') {

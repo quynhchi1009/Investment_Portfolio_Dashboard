@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./investment-list.css'],
   standalone: false,
 })
-  
+
 export class InvestmentListComponent implements OnInit {
   investments: any[] = [
     {
@@ -44,7 +44,6 @@ export class InvestmentListComponent implements OnInit {
   currentFilter: string = 'all';
   isLoading: boolean = false;
 
-  // Thêm các thuộc tính này
   allInvestmentsCount: number = 0;
   activeInvestmentsCount: number = 0;
   reviewInvestmentsCount: number = 0;
@@ -53,7 +52,7 @@ export class InvestmentListComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.updateCounts(); // Gọi phương thức này để cập nhật số lượng khi khởi tạo
+    this.updateCounts(); 
     this.filterInvestments(this.currentFilter);
   }
 

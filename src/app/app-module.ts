@@ -20,7 +20,7 @@ import { TreeViewComponent } from './components/tree-view/tree-view';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule, // <-- Thêm vào mảng imports
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

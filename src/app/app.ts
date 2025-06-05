@@ -17,19 +17,17 @@ interface TreeNode {
   standalone: false,
 })
 export class AppComponent implements OnInit {
-  title = 'Alpha Holdings';
+  title = 'Investment Portfolio Dashboard';
   treeData: TreeNode = fileStructure;
 
   ngOnInit() {
     console.log('Loaded file structure:', this.treeData);
   }
 
-  // Số lượng child nodes
   getChildCount(node: TreeNode): number {
     return node.children ? node.children.length : 0;
   }
 
-  // Expand/Collapse (tuỳ chỉnh)
   toggleNode(node: TreeNode) {
     node['expanded'] = !node['expanded'];
   }

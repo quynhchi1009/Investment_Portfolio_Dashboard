@@ -17,7 +17,6 @@ export class SidebarComponent {
     });
   }
 
-  // Placeholder functions for quick actions
   addNewDeal(): void {
     alert('Adding new deal...');
   }
